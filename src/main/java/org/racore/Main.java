@@ -5,24 +5,24 @@ import java.time.LocalDateTime;
 
 public class Main {
     public static void main(String[] args) {
-        Endpoint.get("/person", _ -> new Person("Alice", 30));
+        Endpoint.get("/getPerson", _ -> new Person("Alice", 30));
 
-        Endpoint.post("/person", request -> {
+        Endpoint.post("/addPerson", request -> {
             Person person = request.getBodyAs(Person.class);
             return "Received Person: " + person;
         });
 
-        Endpoint.put("/person", request -> {
+        Endpoint.put("/updatePerson", request -> {
             Person person = request.getBodyAs(Person.class);
             return "Updated Person: " + person;
         });
 
-        Endpoint.patch("/person", request -> {
+        Endpoint.patch("/patchPerson", request -> {
             Person person = request.getBodyAs(Person.class);
             return "Partially updated Person: " + person;
         });
 
-        Endpoint.delete("/person", _ -> "Person deleted");
+        Endpoint.delete("/deletePerson", _ -> "Person deleted");
 
         Endpoint.serveStatic("/index.html");
 
