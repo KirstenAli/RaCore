@@ -96,7 +96,7 @@ public class Endpoint {
         }
 
         String path = exchange.getRequestURI().getPath();
-        MatchedEndpoint matchedEndpoint = findMatchingEndpoint(exchange.getRequestMethod(), path);
+        MatchedEndpoint matchedEndpoint = findMatchingEndpoint(path);
 
         if (matchedEndpoint == null) {
             sendResponse(exchange, 404, "Not Found");
@@ -150,13 +150,11 @@ public class Endpoint {
         return pathVariables;
     }
 
-    private static MatchedEndpoint findMatchingEndpoint(String method, String path) {
+    private static MatchedEndpoint findMatchingEndpoint(String path) {
         for (EndpointHandler handler : endpoints.values()) {
-            if (handler.getMethod().equals(method)) {
-                Matcher matcher = handler.getPattern().matcher(path);
-                if (matcher.matches()) {
-                    return new MatchedEndpoint(handler, matcher);
-                }
+            Matcher matcher = handler.getPattern().matcher(path);
+            if (matcher.matches()) {
+                return new MatchedEndpoint(handler, matcher);
             }
         }
         return null;
