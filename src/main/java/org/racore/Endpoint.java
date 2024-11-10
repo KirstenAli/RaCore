@@ -67,8 +67,7 @@ public class Endpoint {
     }
 
     private static Object handleStaticRequest(Request request) {
-        String requestedPath = request.getPath();
-        Path fullPath = Paths.get(STATIC_DIRECTORY + requestedPath).normalize();
+        Path fullPath = Paths.get(STATIC_DIRECTORY).resolve(request.getPath()).normalize();
 
         if (Files.exists(fullPath) && !Files.isDirectory(fullPath) && fullPath.startsWith(STATIC_DIRECTORY)) {
             return fullPath;
