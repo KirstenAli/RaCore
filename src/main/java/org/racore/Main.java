@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 public class Main {
     public static void main(String[] args) {
-        Endpoint.get("/getPerson", _ -> new Person("Alice", 30));
+        Endpoint.get("/getPerson/{id}", _ -> new Person("Alice", 30));
 
         Endpoint.post("/addPerson", request -> {
             Person person = request.getBodyAs(Person.class);
