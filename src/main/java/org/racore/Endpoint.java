@@ -6,7 +6,6 @@ import com.sun.net.httpserver.HttpServer;
 import com.sun.net.httpserver.HttpExchange;
 
 import java.io.IOException;
-import java.net.InetSocketAddress;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -22,16 +21,13 @@ public class Endpoint {
     private static final String STATIC_DIRECTORY = "/static";
 
     static {
-        int port = RaConfig.getServerPort();
-        try {
-            server = HttpServer.create(new InetSocketAddress(port), 0);
-            server.setExecutor(null);
-            server.start();
-            System.out.println("Endpoint server started on port " + port);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        serveStatic();
+        initializeServer();
+    }
+
+    public static void initializeServer() {
+        server = ServerRegistry.getServer();
+        server.start();
+        System.out.println("Server started on port " + server.getAddress().getPort());
     }
 
     public static void addInterceptor(Interceptor interceptor) {
@@ -58,22 +54,25 @@ public class Endpoint {
         registerEndpoint("PATCH", endpoint, callback);
     }
 
-    private static void serveStatic() {
+    public static void serveStatic() {
         registerEndpoint("GET","/*", Endpoint::handleStaticRequest);
     }
 
-    public static void serveStatic(String path) {
-        registerEndpoint("GET", path, Endpoint::handleStaticRequest);
+    private static Path handleStaticRequest(Request request) {
+        return resolvePath(request.getPath());
     }
 
-    private static Object handleStaticRequest(Request request) {
-        Path fullPath = Paths.get(STATIC_DIRECTORY).resolve(request.getPath()).normalize();
-
-        if (Files.exists(fullPath) && !Files.isDirectory(fullPath) && fullPath.startsWith(STATIC_DIRECTORY)) {
-            return fullPath;
-        } else {
+    public static Path resolvePath(String requestPath) {
+        if (requestPath == null || requestPath.isEmpty()) {
             return null;
         }
+
+        Path fullPath = Paths.get(STATIC_DIRECTORY, requestPath).normalize();
+        return isValidFilePath(fullPath) ? fullPath : null;
+    }
+
+    private static boolean isValidFilePath(Path path) {
+        return Files.exists(path) && !Files.isDirectory(path) && path.startsWith(STATIC_DIRECTORY);
     }
 
     private static void registerEndpoint(String method, String endpoint, Function<Request, ?> callback) {
@@ -107,7 +106,6 @@ public class Endpoint {
 
         handleResponse(exchange, response);
     }
-
 
     private static boolean runPreInterceptors(HttpExchange exchange) {
         for (Interceptor interceptor : interceptors) {
@@ -159,26 +157,19 @@ public class Endpoint {
         return null;
     }
 
-    private static void sendJsonResponse(HttpExchange exchange, int statusCode, Object response) throws IOException {
-        String jsonResponse = response instanceof String ? (String) response : JsonUtils.toJson(response);
+    public static void sendJsonResponse(HttpExchange exchange, int statusCode, Object response) throws IOException {
+        String jsonResponse = JsonUtils.toJson(response);
         exchange.getResponseHeaders().set("Content-Type", "application/json");
         sendResponse(exchange, statusCode, jsonResponse);
     }
 
-    private static void sendResponse(HttpExchange exchange, int statusCode, String response) throws IOException {
+    public static void sendResponse(HttpExchange exchange, int statusCode, String response) throws IOException {
         exchange.sendResponseHeaders(statusCode, response.getBytes().length);
         try (var os = exchange.getResponseBody()) {
             os.write(response.getBytes());
         }
     }
 
-    private static class MatchedEndpoint {
-        final EndpointHandler handler;
-        final Matcher matcher;
-
-        MatchedEndpoint(EndpointHandler handler, Matcher matcher) {
-            this.handler = handler;
-            this.matcher = matcher;
-        }
+    private record MatchedEndpoint(EndpointHandler handler, Matcher matcher) {
     }
 }
