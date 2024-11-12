@@ -1,7 +1,7 @@
 package org.racore;
 
-import org.racore.util.FileUtils;
-import org.racore.util.JsonUtils;
+import org.apache.commons.fileupload2.core.DiskFileItem;
+import org.racore.util.*;
 import com.sun.net.httpserver.HttpServer;
 import com.sun.net.httpserver.HttpExchange;
 
@@ -135,7 +135,14 @@ public class Endpoint {
 
     private static Object processRequest(HttpExchange exchange, EndpointHandler handler, Matcher matcher) throws IOException {
         Map<String, String> pathVariables = extractPathVariables(matcher);
-        Request request = new Request(exchange, pathVariables);
+        Map<String, String> queryParams = QueryParameterUtil.parseQueryParameters(exchange.getRequestURI());
+
+        CustomRequest customRequest = FormDataExtractor.extractFormData(exchange);
+        Map<String, DiskFileItem> uploadedFiles = customRequest.files();
+        Map<String, String> formFields = customRequest.formFields();
+
+        Request request = new Request(exchange, pathVariables, queryParams, uploadedFiles, formFields);
+
         return handler.getCallback().apply(request);
     }
 
