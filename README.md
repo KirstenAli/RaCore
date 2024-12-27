@@ -3,7 +3,7 @@ You can explore the complete Java documentation for the Ra framework [here](http
 
 # Examples
 
-This tutorial demonstrates various REST API endpoints using the **Ra** framework. Each endpoint showcases a specific HTTP method and use case, including GET, POST, PUT, PATCH, DELETE, uploading, and serving static files. Let’s use a `Person` object as an example.
+This tutorial demonstrates various REST API endpoints using the **Ra** framework. Each endpoint showcases a specific HTTP method and use case, including GET, POST, PUT, PATCH, DELETE, uploading, and serving static files. Let’s use a `Person` as an example.
 
 ---
 
