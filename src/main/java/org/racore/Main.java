@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         get("/getPerson/{id}", _ -> new Person("Alice", 30));
 
-        get("/getPathVariable/{id}/{name}", Request::getPathVariables);
+        get("/getPathVariables/{id}/{name}", Request::getPathVariables);
 
         get("/getQueryParameters", Request::getQueryParams);
 

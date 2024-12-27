@@ -18,11 +18,11 @@ get("/getPerson/{id}", _ -> new Person("Alice", 30));
 
 ### 2. Retrieve Path Variables
 ```java
-get("/getPathVariable/{id}/{name}", Request::getPathVariables);
+get("/getPathVariables/{id}/{name}", Request::getPathVariables);
 ```
 - **Description**: Extracts path variables from the URL.
 - **Example**:
-    - Request: `/getPathVariable/12/Jay`
+    - Request: `/getPathVariables/12/Jay`
     - Response: `{"param0": "12", "param1": "Jay"}`
 ---
 
