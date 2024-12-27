@@ -11,30 +11,29 @@ This tutorial demonstrates various REST API endpoints using the **Ra** framework
 ```java
 get("/getPerson/{id}", _ -> new Person("Alice", 30));
 ```
-- **Description**: Retrieves a person object by their ID.
-- **Output**: Returns a `Person` object with name `Alice` and age `30`.
+- **Description**: Return a person object.
+- **Output**: `{"name": "Alice", "age": 30}`
 
 ---
 
 ### 2. Retrieve Path Variables
 ```java
-get("/getPathVariable/{id}", request -> request.getPathVariables().toString());
+get("/getPathVariable/{id}", Request::getPathVariables);
 ```
 - **Description**: Extracts path variables from the URL.
 - **Example**:
-    - Request: `/getPathVariable/123`
-    - Response: `{id=123}`
-
+    - Request: `/getPathVariable/12/Jay`
+    - Response: `{"param0": "12", "param1": "Jay"}`
 ---
 
 ### 3. Retrieve Query Parameters
 ```java
-get("/getQueryParameters", request -> request.getQueryParams().toString());
+get("/getQueryParameters", Request::getQueryParams);
 ```
 - **Description**: Extracts query parameters from the request URL.
 - **Example**:
     - Request: `/getQueryParameters?name=John&age=25`
-    - Response: `{name=John, age=25}`
+    - Response: `{"name": "John Doe", "age": "30"}`
 
 ---
 
@@ -65,7 +64,7 @@ post("/uploadFile", request -> "Files Received: " + request.getUploadedFiles().s
 
 ### 6. Submit Form Data
 ```java
-post("/sendForm", request -> "Form data received: " + request.getFormFields().toString());
+post("/sendForm", request -> "Form data received: " + request.getFormFields());
 ```
 - **Description**: Processes form data submitted via a `POST` request.
 - **Example**:

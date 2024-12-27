@@ -8,9 +8,9 @@ public class Main {
     public static void main(String[] args) {
         get("/getPerson/{id}", _ -> new Person("Alice", 30));
 
-        get("/getPathVariable/{id}", request -> request.getPathVariables().toString());
+        get("/getPathVariable/{id}/{name}", Request::getPathVariables);
 
-        get("/getQueryParameters", request -> request.getQueryParams().toString());
+        get("/getQueryParameters", Request::getQueryParams);
 
         post("/addPerson", request -> {
             Person person = request.getBodyAs(Person.class);
@@ -19,7 +19,7 @@ public class Main {
 
         post("/uploadFile", request -> "Files Received : " + request.getUploadedFiles().size());
 
-        post("/sendForm", request -> "Form data received: " + request.getFormFields().toString());
+        post("/sendForm", request -> "Form data received: " + request.getFormFields());
 
         put("/updatePerson", request -> {
             Person person = request.getBodyAs(Person.class);
