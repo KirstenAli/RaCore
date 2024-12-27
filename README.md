@@ -1,5 +1,5 @@
 ### View the Java Docs
-You can explore the complete Java documentation for the Rar framework [here](https://kirstenali.github.io/RaCore/).
+You can explore the complete Java documentation for the Ra framework [here](https://kirstenali.github.io/RaCore/).
 
 # Examples
 
