@@ -33,7 +33,7 @@ get("/getQueryParameters", Request::getQueryParams);
 - **Description**: Extracts query parameters from the request URL.
 - **Example**:
     - Request: `/getQueryParameters?name=John&age=25`
-    - Response: `{"name": "John Doe", "age": "30"}`
+    - Response: `{"name": "John", "age": "30"}`
 
 ---
 
@@ -48,6 +48,20 @@ post("/addPerson", request -> {
 - **Example**:
     - Request Body: `{ "name": "Alice", "age": 30 }`
     - Response: `Received Person: Person{name='Alice', age=30}`
+
+---
+
+### 7. Update a Person
+```java
+put("/updatePerson", request -> {
+    Person person = request.getBodyAs(Person.class);
+    return "Updated Person: " + person;
+});
+```
+- **Description**: Updates an entire `Person` object using a `PUT` request.
+- **Example**:
+  - Request Body: `{ "name": "Alice", "age": 35 }`
+  - Response: `Updated Person: Person{name='Alice', age=35}`
 
 ---
 
@@ -73,35 +87,7 @@ post("/sendForm", request -> "Form data received: " + request.getFormFields());
 
 ---
 
-### 7. Update a Person
-```java
-put("/updatePerson", request -> {
-    Person person = request.getBodyAs(Person.class);
-    return "Updated Person: " + person;
-});
-```
-- **Description**: Updates an entire `Person` object using a `PUT` request.
-- **Example**:
-    - Request Body: `{ "name": "Alice", "age": 35 }`
-    - Response: `Updated Person: Person{name='Alice', age=35}`
-
----
-
-### 8. Partially Update a Person
-```java
-patch("/patchPerson", request -> {
-    Person person = request.getBodyAs(Person.class);
-    return "Partially updated Person: " + person;
-});
-```
-- **Description**: Updates specific fields of a `Person` object using a `PATCH` request.
-- **Example**:
-    - Request Body: `{ "age": 40 }`
-    - Response: `Partially updated Person: Person{name='Alice', age=40}`
-
----
-
-### 9. Delete a Person
+### 8. Delete a Person
 ```java
 delete("/deletePerson", _ -> "Person deleted");
 ```
@@ -110,7 +96,7 @@ delete("/deletePerson", _ -> "Person deleted");
 
 ---
 
-### 10. Serve Static Files
+### 9. Serve Static Files
 ```java
 serveStatic(); // Enable serving resources from the static folder in resources
 get("/getFile/info.zip", _ -> resolvePath("/info.zip"));
@@ -118,13 +104,5 @@ get("/getFile/info.zip", _ -> resolvePath("/info.zip"));
 - **Description**:
     - Enables serving static files from a predefined `resources/static` folder.
     - Serves a specific file, `info.zip`, when requested.
-
----
-
-### 11. Logging Interceptor
-```java
-addInterceptor(new LoggingInterceptor());
-```
-- **Description**: Adds a logging interceptor to log incoming requests for debugging or monitoring purposes.
 
 ---
