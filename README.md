@@ -11,14 +11,14 @@ This tutorial demonstrates various REST API endpoints using the **Ra** framework
 ```java
 get("/getPerson/{id}", _ -> new Person("Alice", 30));
 ```
-- **Description**: Return a person object.
+- **Description**: Return a person object in JSON format.
 - **Output**: `{"name": "Alice", "age": 30}`
 
 ---
 
 ### 2. Retrieve Path Variables
 ```java
-get("/getPathVariable/{id}", Request::getPathVariables);
+get("/getPathVariable/{id}/{name}", Request::getPathVariables);
 ```
 - **Description**: Extracts path variables from the URL.
 - **Example**:
