@@ -18,7 +18,7 @@ public class Endpoint {
     private static final Map<String, EndpointHandler> endpoints = new HashMap<>();
     private static final List<Interceptor> interceptors = new ArrayList<>();
     private static HttpServer server;
-    private static final String STATIC_DIRECTORY = "/static";
+    private static final String STATIC_DIRECTORY = "src/main/resources/static";
 
     static {
         initializeServer();

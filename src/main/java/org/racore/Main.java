@@ -27,7 +27,7 @@ public class Main {
 
         serveStatic();
 
-        get("/getFile/info.txt", _ -> resolvePath("/info.txt"));
+        get("/getFile/info.zip", _ -> resolvePath("/info.zip"));
 
         addInterceptor(new LoggingInterceptor());
     }
