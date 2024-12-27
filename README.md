@@ -8,7 +8,7 @@ This tutorial demonstrates various REST API endpoints using the **Ra** framework
 ```java
 get("/getPerson/{id}", _ -> new Person("Alice", 30));
 ```
-- **Description**: Retrieves a person object by their ID (placeholder functionality).
+- **Description**: Retrieves a person object by their ID.
 - **Output**: Returns a `Person` object with name `Alice` and age `30`.
 
 ---
@@ -103,7 +103,7 @@ patch("/patchPerson", request -> {
 ```java
 delete("/deletePerson", _ -> "Person deleted");
 ```
-- **Description**: Deletes a person (placeholder functionality).
+- **Description**: Deletes a person.
 - **Output**: Returns a confirmation message: `Person deleted`.
 
 ---
