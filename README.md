@@ -65,7 +65,16 @@ put("/updatePerson", request -> {
 
 ---
 
-### 6. Upload a File
+### 6. Delete a Person
+```java
+delete("/deletePerson", _ -> "Person deleted");
+```
+- **Description**: Deletes a person.
+- **Output**: Returns a confirmation message: `Person deleted`.
+
+---
+
+### 7. Upload a File
 ```java
 post("/uploadFile", request -> "Files Received: " + request.getUploadedFiles().size());
 ```
@@ -76,7 +85,7 @@ post("/uploadFile", request -> "Files Received: " + request.getUploadedFiles().s
 
 ---
 
-### 7. Submit Form Data
+### 8. Submit Form Data
 ```java
 post("/sendForm", request -> "Form data received: " + request.getFormFields());
 ```
@@ -84,15 +93,6 @@ post("/sendForm", request -> "Form data received: " + request.getFormFields());
 - **Example**:
     - Request Body: Form data with fields `name=John` and `age=25`.
     - Response: `Form data received: {name=John, age=25}`
-
----
-
-### 8. Delete a Person
-```java
-delete("/deletePerson", _ -> "Person deleted");
-```
-- **Description**: Deletes a person.
-- **Output**: Returns a confirmation message: `Person deleted`.
 
 ---
 
