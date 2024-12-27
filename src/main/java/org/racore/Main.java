@@ -8,10 +8,18 @@ public class Main {
     public static void main(String[] args) {
         get("/getPerson/{id}", _ -> new Person("Alice", 30));
 
+        get("/getPathVariable/{id}", request -> request.getPathVariables().toString());
+
+        get("/getQueryParameters", request -> request.getQueryParams().toString());
+
         post("/addPerson", request -> {
             Person person = request.getBodyAs(Person.class);
             return "Received Person: " + person;
         });
+
+        post("/uploadFile", request -> "Files Received : " + request.getUploadedFiles().size());
+
+        post("/sendForm", request -> "Form data received: " + request.getFormFields().toString());
 
         put("/updatePerson", request -> {
             Person person = request.getBodyAs(Person.class);
@@ -25,8 +33,7 @@ public class Main {
 
         delete("/deletePerson", _ -> "Person deleted");
 
-        serveStatic();
-
+        serveStatic(); // enable serving resources from the static folder in resources
         get("/getFile/info.zip", _ -> resolvePath("/info.zip"));
 
         addInterceptor(new LoggingInterceptor());

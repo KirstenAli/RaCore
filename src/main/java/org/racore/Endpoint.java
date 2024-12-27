@@ -143,7 +143,7 @@ public class Endpoint {
 
         Request request = new Request(exchange, pathVariables, queryParams, uploadedFiles, formFields);
 
-        return handler.getCallback().apply(request);
+        return handler.callback().apply(request);
     }
 
     private static Map<String, String> extractPathVariables(java.util.regex.Matcher matcher) {
@@ -156,7 +156,7 @@ public class Endpoint {
 
     private static MatchedEndpoint findMatchingEndpoint(String path) {
         for (EndpointHandler handler : endpoints.values()) {
-            Matcher matcher = handler.getPattern().matcher(path);
+            Matcher matcher = handler.pattern().matcher(path);
             if (matcher.matches()) {
                 return new MatchedEndpoint(handler, matcher);
             }

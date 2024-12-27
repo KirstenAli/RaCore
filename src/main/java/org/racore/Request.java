@@ -2,12 +2,14 @@ package org.racore;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpExchange;
+import lombok.Getter;
 import org.apache.commons.fileupload2.core.DiskFileItem;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
+@Getter
 public class Request {
     private final HttpExchange exchange;
     private static final ObjectMapper objectMapper = new ObjectMapper();
