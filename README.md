@@ -7,7 +7,7 @@ This tutorial demonstrates various REST API endpoints using the **Ra** framework
 
 ---
 
-### 1. Get a Person by ID
+### 1. Get an Object
 ```java
 get("/getPerson/{id}", _ -> new Person("Alice", 30));
 ```
@@ -51,7 +51,7 @@ post("/addPerson", request -> {
 
 ---
 
-### 7. Update a Person
+### 5. Update a Person
 ```java
 put("/updatePerson", request -> {
     Person person = request.getBodyAs(Person.class);
@@ -65,7 +65,7 @@ put("/updatePerson", request -> {
 
 ---
 
-### 5. Upload a File
+### 6. Upload a File
 ```java
 post("/uploadFile", request -> "Files Received: " + request.getUploadedFiles().size());
 ```
@@ -76,7 +76,7 @@ post("/uploadFile", request -> "Files Received: " + request.getUploadedFiles().s
 
 ---
 
-### 6. Submit Form Data
+### 7. Submit Form Data
 ```java
 post("/sendForm", request -> "Form data received: " + request.getFormFields());
 ```
