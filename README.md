@@ -7,7 +7,7 @@ This tutorial provides an overview of REST API endpoints using the Ra framework.
 
 ---
 
-### 1. Get an Object
+### 1. Start a web server and return an object with a single line of Java
 ```java
 get("/getPerson/{id}", _ -> new Person("Alice", 30));
 ```
