@@ -133,7 +133,7 @@ public class Endpoint {
         }
     }
 
-    private static Object processRequest(HttpExchange exchange, EndpointHandler handler, Matcher matcher) throws IOException {
+    private static Object processRequest(HttpExchange exchange, EndpointHandler handler, Matcher matcher) {
         Map<String, String> pathVariables = extractPathVariables(matcher);
         Map<String, String> queryParams = QueryParameterUtil.parseQueryParameters(exchange.getRequestURI());
 
