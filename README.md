@@ -1,6 +1,14 @@
 ### View the Java Docs
 You can explore the complete Java documentation for the Ra framework [here](https://kirstenali.github.io/RaCore/).
 
+# Installation
+
+<dependency>
+  <groupId>org.racore</groupId>
+  <artifactId>ra-core</artifactId>
+  <version>1.0-SNAPSHOT</version>
+</dependency>
+
 # Examples
 
 This tutorial provides an overview of REST API endpoints using the Ra framework. It demonstrates various HTTP methods such as GET, POST, PUT, DELETE, as well as handling file uploads and serving static files. For illustration, we'll use a Person object as an example.
