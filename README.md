@@ -19,7 +19,7 @@ This tutorial provides an overview of REST API endpoints using the Ra framework.
 
 ---
 
-### 1. Start a web server and return an object with a single line of Java
+### Start a web server and return an object with a single line of Java
 ```java
 get("/getPerson/{id}", _ -> new Person("Alice", 30));
 ```
@@ -28,7 +28,7 @@ get("/getPerson/{id}", _ -> new Person("Alice", 30));
 
 ---
 
-### 2. Retrieve Path Variables
+### Retrieve Path Variables
 ```java
 get("/getPathVariables/{id}/{name}", Request::getPathVariables);
 ```
@@ -38,7 +38,7 @@ get("/getPathVariables/{id}/{name}", Request::getPathVariables);
     - Response: `{"param0": "12", "param1": "Jay"}`
 ---
 
-### 3. Retrieve Query Parameters
+### Retrieve Query Parameters
 ```java
 get("/getQueryParameters", Request::getQueryParams);
 ```
@@ -49,7 +49,7 @@ get("/getQueryParameters", Request::getQueryParams);
 
 ---
 
-### 4. Add a New Person
+### Add a New Person
 ```java
 post("/addPerson", request -> {
     Person person = request.getBodyAs(Person.class);
@@ -63,7 +63,7 @@ post("/addPerson", request -> {
 
 ---
 
-### 5. Update a Person
+### Update a Person
 ```java
 put("/updatePerson", request -> {
     Person person = request.getBodyAs(Person.class);
@@ -77,7 +77,7 @@ put("/updatePerson", request -> {
 
 ---
 
-### 6. Delete a Person
+### Delete a Person
 ```java
 delete("/deletePerson", _ -> "Person deleted");
 ```
@@ -86,7 +86,7 @@ delete("/deletePerson", _ -> "Person deleted");
 
 ---
 
-### 7. Upload a File
+### Upload a File
 ```java
 post("/uploadFile", request -> "Files Received: " + request.getUploadedFiles().size());
 ```
@@ -97,7 +97,7 @@ post("/uploadFile", request -> "Files Received: " + request.getUploadedFiles().s
 
 ---
 
-### 8. Submit Form Data
+### Submit Form Data
 ```java
 post("/sendForm", request -> "Form data received: " + request.getFormFields());
 ```
@@ -108,7 +108,7 @@ post("/sendForm", request -> "Form data received: " + request.getFormFields());
 
 ---
 
-### 9. Serve Static Files
+### Serve Static Files
 ```java
 serveStatic(); // Enable serving resources from the static folder in resources
 get("/getFile/info.zip", _ -> resolvePath("/info.zip"));
