@@ -38,7 +38,7 @@ verb("/endpoint", request -> {
 
 ---
 
-### 🌐 Quick Start: One-Line JSON Response
+### Quick Start: One-Line JSON Response
 
 Start up a web server, register an endpoint, and return a JSON response in one line:
 
@@ -50,7 +50,7 @@ get("/getPerson/{id}", _ -> new Person("Alice", 30));
 
 ---
 
-### 🔍 Retrieve Path Variables
+### Retrieve Path Variables
 
 ```java
 get("/getPathVariables/{id}/{name}", Request::getPathVariables);
@@ -62,7 +62,7 @@ get("/getPathVariables/{id}/{name}", Request::getPathVariables);
 
 ---
 
-### 🔗 Retrieve Query Parameters
+### Retrieve Query Parameters
 
 ```java
 get("/getQueryParameters", Request::getQueryParams);
@@ -74,7 +74,7 @@ get("/getQueryParameters", Request::getQueryParams);
 
 ---
 
-### ➕ Add a New Person
+### Add a New Person
 
 ```java
 post("/addPerson", request -> {
@@ -89,7 +89,7 @@ post("/addPerson", request -> {
 
 ---
 
-### ♻ Update a Person
+### Update a Person
 
 ```java
 put("/updatePerson", request -> {
@@ -104,7 +104,7 @@ put("/updatePerson", request -> {
 
 ---
 
-### ❌ Delete a Person
+### Delete a Person
 
 ```java
 delete("/deletePerson", _ -> "Person deleted");
