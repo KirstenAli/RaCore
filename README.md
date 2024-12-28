@@ -3,11 +3,15 @@ You can explore the complete Java documentation for the Ra framework [here](http
 
 # Installation
 
+Add the following dependency to your `pom.xml`:
+
+```xml
 <dependency>
   <groupId>org.racore</groupId>
   <artifactId>ra-core</artifactId>
   <version>1.0-SNAPSHOT</version>
 </dependency>
+```
 
 # Examples
 
