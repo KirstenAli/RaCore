@@ -30,7 +30,7 @@ Create an endpoint effortlessly with the following syntax:
 
 ```java
 verb("/endpoint", request -> {
-    // Process the request (parse data, access query params, etc.)
+    // Process the request (parse the request body into an object, access query parameters, path variables, files, or form data, etc.)
     // Return an object or a file path
     return new MyObject();
 });
