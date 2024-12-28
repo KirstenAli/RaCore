@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.racore"},{"l":"org.racore.utils"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"org.racore","l":"org.racore"},{"m":"org.racore","l":"org.racore.utils"}];updateSearchResults();

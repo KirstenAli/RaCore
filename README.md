@@ -19,7 +19,23 @@ This tutorial provides an overview of REST API endpoints using the Ra framework.
 
 ---
 
-### Start a web server and return an object with a single line of Java
+## Defining an Endpoint
+
+When using Ra, you can define an endpoint with the following syntax:
+
+```java
+verb("/endpoint", request -> {
+    // Do something cool with the request
+    // For example, parse data into an object, access query parameters, path variables, files, or form data, etc.
+
+    // Then return an object or a Path to a resource
+    return new MyObject();
+});
+```
+
+---
+
+### Start a web server, register an endpoint, and return a JSON response with a single line of Java
 ```java
 get("/getPerson/{id}", _ -> new Person("Alice", 30));
 ```

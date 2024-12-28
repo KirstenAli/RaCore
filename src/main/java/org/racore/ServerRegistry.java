@@ -4,6 +4,7 @@ import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.concurrent.Executors;
 import java.util.function.Function;
 
 public class ServerRegistry {
@@ -21,7 +22,7 @@ public class ServerRegistry {
     private static HttpServer createDefaultHttpServer(int port) {
         try {
             HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
-            server.setExecutor(null);
+            server.setExecutor(Executors.newCachedThreadPool());
             return server;
         } catch (IOException e) {
             throw new RuntimeException("Failed to create HttpServer on port " + port, e);
