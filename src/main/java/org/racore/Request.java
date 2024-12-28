@@ -2,14 +2,12 @@ package org.racore;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpExchange;
-import lombok.Getter;
 import org.apache.commons.fileupload2.core.DiskFileItem;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-@Getter
 public class Request {
     private final HttpExchange exchange;
     private static final ObjectMapper objectMapper = new ObjectMapper();
@@ -91,5 +89,25 @@ public class Request {
 
     public String getFormField(String fieldName) {
         return formFields.get(fieldName);
+    }
+
+    public HttpExchange getExchange() {
+        return exchange;
+    }
+
+    public Map<String, String> getQueryParams() {
+        return queryParams;
+    }
+
+    public Map<String, String> getPathVariables() {
+        return pathVariables;
+    }
+
+    public Map<String, DiskFileItem> getUploadedFiles() {
+        return uploadedFiles;
+    }
+
+    public Map<String, String> getFormFields() {
+        return formFields;
     }
 }

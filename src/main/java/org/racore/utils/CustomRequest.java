@@ -1,4 +1,4 @@
-package org.racore.util;
+package org.racore.utils;
 
 import org.apache.commons.fileupload2.core.DiskFileItem;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package org.racore.util;
+package org.racore.utils;
 
 import org.apache.hc.core5.http.NameValuePair;
 import org.apache.hc.core5.net.URIBuilder;
