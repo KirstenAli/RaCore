@@ -14,21 +14,23 @@ public class FormDataExtractor {
         Map<String, String> formFields = new HashMap<>();
         Map<String, DiskFileItem> files = new HashMap<>();
 
-        DiskFileItemFactory factory = new DiskFileItemFactory.Builder().get();
-        JakartaServletFileUpload<DiskFileItem, DiskFileItemFactory> upload = new JakartaServletFileUpload<>(factory);
+        if (JakartaServletFileUpload.isMultipartContent(new HttpExchangeRequestContext(exchange))) {
+            DiskFileItemFactory factory = new DiskFileItemFactory.Builder().get();
+            JakartaServletFileUpload<DiskFileItem, DiskFileItemFactory> upload = new JakartaServletFileUpload<>(factory);
 
-        List<DiskFileItem> items;
-        try {
-            items = upload.parseRequest(new HttpExchangeRequestContext(exchange));
-        } catch (FileUploadException e) {
-            throw new RuntimeException(e);
-        }
+            List<DiskFileItem> items;
+            try {
+                items = upload.parseRequest(new HttpExchangeRequestContext(exchange));
+            } catch (FileUploadException e) {
+                throw new RuntimeException(e);
+            }
 
-        for (DiskFileItem item : items) {
-            if (item.isFormField()) {
-                formFields.put(item.getFieldName(), item.getString());
-            } else {
-                files.put(item.getFieldName(), item);
+            for (DiskFileItem item : items) {
+                if (item.isFormField()) {
+                    formFields.put(item.getFieldName(), item.getString());
+                } else {
+                    files.put(item.getFieldName(), item);
+                }
             }
         }
 
