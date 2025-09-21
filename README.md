@@ -9,11 +9,21 @@ Explore the **complete Java documentation** for the Ra framework [here](https://
 To get started, add the following dependency to your `pom.xml`:
 
 ```xml
-<dependency>
-  <groupId>org.racore</groupId>
-  <artifactId>ra-core</artifactId>
-  <version>1.0.0</version>
-</dependency>
+<repositories>
+    <repository>
+        <id>github-kirstenali-racore</id>
+        <name>GitHub Packages - RaCore</name>
+        <url>https://maven.pkg.github.com/KirstenAli/RaCore</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>org.racore</groupId>
+        <artifactId>ra-core</artifactId>
+        <version>0.1.0-alpha</version>
+    </dependency>
+</dependencies>
 ```
 
 ---
@@ -30,9 +40,9 @@ Create an endpoint effortlessly with the following syntax:
 
 ```java
 verb("/endpoint", request -> {
-    // Process the request (parse the request body into an object, access query parameters, path variables, files, or form data, etc.)
-    // Return an object or a file path to be resolved
-    return new MyObject();
+        // Process the request (parse the request body into an object, access query parameters, path variables, files, or form data, etc.)
+        // Return an object or a file path to be resolved
+        return new MyObject();
 });
 ```
 
@@ -57,8 +67,8 @@ get("/getPathVariables/{id}/{name}", Request::getPathVariables);
 ```
 - **Purpose**: Extract path variables from the URL.
 - **Example**:
-  - Request: `/getPathVariables/12/Jay`
-  - Response: `{ "param0": "12", "param1": "Jay" }`
+    - Request: `/getPathVariables/12/Jay`
+    - Response: `{ "param0": "12", "param1": "Jay" }`
 
 ---
 
@@ -69,8 +79,8 @@ get("/getQueryParameters", Request::getQueryParams);
 ```
 - **Purpose**: Extract query parameters from the URL.
 - **Example**:
-  - Request: `/getQueryParameters?name=John&age=25`
-  - Response: `{ "name": "John", "age": "25" }`
+    - Request: `/getQueryParameters?name=John&age=25`
+    - Response: `{ "name": "John", "age": "25" }`
 
 ---
 
@@ -78,14 +88,14 @@ get("/getQueryParameters", Request::getQueryParams);
 
 ```java
 post("/addPerson", request -> {
-    Person person = request.getBodyAs(Person.class);
+Person person = request.getBodyAs(Person.class);
     return "Received Person: " + person;
 });
 ```
 - **Purpose**: Accept JSON payloads to create a new person.
 - **Example**:
-  - Request Body: `{ "name": "Alice", "age": 30 }`
-  - Response: `Received Person: Person{name='Alice', age=30}`
+    - Request Body: `{ "name": "Alice", "age": 30 }`
+    - Response: `Received Person: Person{name='Alice', age=30}`
 
 ---
 
@@ -93,14 +103,14 @@ post("/addPerson", request -> {
 
 ```java
 put("/updatePerson", request -> {
-    Person person = request.getBodyAs(Person.class);
+Person person = request.getBodyAs(Person.class);
     return "Updated Person: " + person;
 });
 ```
 - **Purpose**: Update an entire `Person` object.
 - **Example**:
-  - Request Body: `{ "name": "Alice", "age": 35 }`
-  - Response: `Updated Person: Person{name='Alice', age=35}`
+    - Request Body: `{ "name": "Alice", "age": 35 }`
+    - Response: `Updated Person: Person{name='Alice', age=35}`
 
 ---
 
@@ -121,8 +131,8 @@ post("/uploadFile", request -> "Files Received: " + request.getUploadedFiles().s
 ```
 - **Purpose**: Handle file uploads.
 - **Example**:
-  - Request: Upload multiple files.
-  - Response: `Files Received: 3`
+    - Request: Upload multiple files.
+    - Response: `Files Received: 3`
 
 ---
 
@@ -133,8 +143,8 @@ post("/sendForm", request -> "Form data received: " + request.getFormFields());
 ```
 - **Purpose**: Process form data submitted via `POST`.
 - **Example**:
-  - Request Body: Form data with fields `name=John` and `age=25`.
-  - Response: `Form data received: {name=John, age=25}`
+    - Request Body: Form data with fields `name=John` and `age=25`.
+    - Response: `Form data received: {name=John, age=25}`
 
 ---
 
@@ -146,8 +156,8 @@ get("/getFile/info.zip", _ -> resolvePath("/info.zip"));
 ```
 - **Purpose**: Serve static files like images, documents, or archives.
 - **Example**:
-  - Request: `/getFile/info.zip`
-  - File Response: `info.zip` from `resources/static`.
+    - Request: `/getFile/info.zip`
+    - File Response: `info.zip` from `resources/static`.
 
 ---
 
