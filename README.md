@@ -11,8 +11,7 @@ To get started, add the following dependency to your `pom.xml`:
 ```xml
 <repositories>
     <repository>
-        <id>github-kirstenali-racore</id>
-        <name>GitHub Packages - RaCore</name>
+        <id>github</id>
         <url>https://maven.pkg.github.com/KirstenAli/RaCore</url>
     </repository>
 </repositories>

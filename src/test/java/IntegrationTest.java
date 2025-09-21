@@ -112,7 +112,6 @@ public class IntegrationTest {
         assertTrue(res.body().toLowerCase().contains("deleted"));
     }
 
-
     private static HttpResponse<String> send(HttpRequest req) throws Exception {
         return client.send(req, HttpResponse.BodyHandlers.ofString());
     }
