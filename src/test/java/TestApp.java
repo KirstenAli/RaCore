@@ -1,15 +1,20 @@
-package org.racore;
-
 import com.sun.net.httpserver.HttpExchange;
+import org.racore.Interceptor;
+import org.racore.Request;
+
 import java.time.LocalDateTime;
 import static org.racore.Endpoint.*;
 
-public class Main {
-    public static void main(String[] args) {
+public class TestApp {
+    public static void startServer() {
+        defineRoutes();
+        registerInterceptors();
+        serveStatic(); // enable static file serving
+    }
+
+    private static void defineRoutes() {
         get("/getPerson/{id}", _ -> new Person("Alice", 30));
-
         get("/getPathVariables/{id}/{name}", Request::getPathVariables);
-
         get("/getQueryParameters", Request::getQueryParams);
 
         post("/addPerson", request -> {
@@ -18,7 +23,6 @@ public class Main {
         });
 
         post("/uploadFile", request -> "Files Received : " + request.getUploadedFiles().size());
-
         post("/sendForm", request -> "Form data received: " + request.getFormFields());
 
         put("/updatePerson", request -> {
@@ -33,9 +37,10 @@ public class Main {
 
         delete("/deletePerson", _ -> "Person deleted");
 
-        serveStatic(); // enable serving resources from the static folder in resources
         get("/getFile/info.zip", _ -> resolvePath("/info.zip"));
+    }
 
+    private static void registerInterceptors() {
         addInterceptor(new LoggingInterceptor());
     }
 
@@ -72,6 +77,7 @@ public class Main {
             return "Person{name='" + name + "', age=" + age + "}";
         }
     }
+
     public static class LoggingInterceptor implements Interceptor {
 
         @Override

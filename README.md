@@ -12,7 +12,7 @@ To get started, add the following dependency to your `pom.xml`:
 <dependency>
   <groupId>org.racore</groupId>
   <artifactId>ra-core</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0.0</version>
 </dependency>
 ```
 
