@@ -6,7 +6,7 @@
 
     <groupId>org.racore</groupId>
     <artifactId>ra-core</artifactId>
-    <version>1.0.0</version>
+    <version>0.1.0-alpha</version>
 
     <properties>
         <maven.compiler.source>22</maven.compiler.source>
