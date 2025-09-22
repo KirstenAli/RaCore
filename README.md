@@ -1,6 +1,6 @@
 # Ra Framework Documentation
 
-Explore the **complete Java docs** for the Ra framework [here](https://kirstenali.github.io/RaCore/).
+Explore the **complete Javadoc** for the Ra framework [here](https://kirstenali.github.io/RaCore/).
 
 ---
 
