@@ -29,7 +29,7 @@ To get started, add the following dependency to your `pom.xml`:
 
 ## 📚 Examples
 
-This guide demonstrates how to use the Ra framework for building REST APIs, including handling HTTP methods, file uploads, and serving static files. Let's dive in with examples based on a **Person** object.
+This guide shows you how to use the Ra framework to build REST APIs. It covers handling HTTP methods, uploading files, and serving static content. Let's dive in with examples based on a **Person** object.
 
 ---
 
