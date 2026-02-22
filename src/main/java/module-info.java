@@ -13,4 +13,5 @@ module org.racore {
     exports org.racore.core.utils;
     exports org.racore.core.requests;
     exports org.racore.core.session;
+    exports org.racore.core.responses;
 }

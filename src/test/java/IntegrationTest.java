@@ -2,11 +2,16 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -165,6 +170,35 @@ public class IntegrationTest {
         assertTrue(r2.body().contains("count=1"), "New client should start at 1");
 
         assertNotEquals(cookieValueOnly(sid1), cookieValueOnly(sid2), "Different clients should get different SID");
+    }
+
+    @Test
+    @DisplayName("GET /stream streams chunks incrementally")
+    void streaming_chunks() throws Exception {
+        List<String> got = readFirstLines("/stream", 3);
+        assertEquals(List.of("chunk-0", "chunk-1", "chunk-2"), got);
+    }
+
+    private static List<String> readFirstLines(String path, int n) throws Exception {
+        HttpRequest req = HttpRequest.newBuilder(URI.create(BASE_URL + path))
+                .timeout(Duration.ofSeconds(5))
+                .GET()
+                .build();
+
+        HttpResponse<java.io.InputStream> res =
+                client.send(req, HttpResponse.BodyHandlers.ofInputStream());
+
+        assertEquals(200, res.statusCode());
+
+        try (var br = new BufferedReader(new InputStreamReader(res.body(), StandardCharsets.UTF_8))) {
+            List<String> lines = new ArrayList<>();
+            while (lines.size() < n) {
+                String line = br.readLine();
+                assertNotNull(line, "Stream ended early");
+                if (!line.isEmpty()) lines.add(line);
+            }
+            return lines;
+        }
     }
 
     private static String extractCookie(HttpHeaders headers, String cookieName) {

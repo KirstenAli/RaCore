@@ -1,5 +1,6 @@
 import com.sun.net.httpserver.HttpExchange;
 import org.racore.core.requests.Request;
+import org.racore.core.responses.StreamingResponse;
 import org.racore.core.utils.CookieUtil;
 import org.racore.interceptors.Interceptor;
 
@@ -77,6 +78,14 @@ public class TestApp {
         post("/session/destroy", request -> {
             sessions.destroy(request.getExchange());
             return "ok";
+        });
+
+        get("/stream", _ -> (StreamingResponse) out -> {
+            for (int i = 0; i < 3; i++) {
+                out.write(("chunk-" + i + "\n").getBytes());
+                out.flush();
+                Thread.sleep(50);
+            }
         });
     }
 
