@@ -43,14 +43,14 @@ public final class SessionManager {
         }
 
         String newId = newSessionId();
-        Session s = new Session(newId, now);
-        store.putNew(s);
+        Session session = new Session(newId, now);
+        store.putNew(session);
 
         CookieUtil.CookieOptions opts = cookieOptions.withMaxAge(store.idleTimeout());
         CookieUtil.setCookie(ex, cookieName, newId, opts);
 
-        ex.setAttribute(EXCHANGE_SESSION_ATTR, s);
-        return s;
+        ex.setAttribute(EXCHANGE_SESSION_ATTR, session);
+        return session;
     }
 
     public void destroy(HttpExchange ex) {
