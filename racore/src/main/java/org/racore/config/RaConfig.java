@@ -30,4 +30,8 @@ public class RaConfig {
             return 8080;
         }
     }
+
+    public static String getServerBackend() {
+        return properties.getProperty("server.backend", "jdk").trim().toLowerCase();
+    }
 }
