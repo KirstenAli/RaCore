@@ -4,8 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import java.net.URI;
 import java.net.http.HttpClient;
+import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -114,5 +116,69 @@ public class IntegrationTest {
 
     private static HttpResponse<String> send(HttpRequest req) throws Exception {
         return client.send(req, HttpResponse.BodyHandlers.ofString());
+    }
+
+    @Test
+    @DisplayName("Session cookie is set and reused across requests (count increments)")
+    void sessionCookie_roundTrip() throws Exception {
+        HttpResponse<String> r1 = send(HttpRequest.newBuilder(URI.create(BASE_URL + "/session/count"))
+                .GET()
+                .build());
+
+        assertEquals(200, r1.statusCode());
+
+        String sidCookie = extractCookie(r1.headers(), "SID");
+        assertNotNull(sidCookie, "Expected Set-Cookie: SID=... on first request");
+
+        assertTrue(r1.body().contains("count=1"), "First request should start count at 1");
+
+        HttpResponse<String> r2 = send(HttpRequest.newBuilder(URI.create(BASE_URL + "/session/count"))
+                .header("Cookie", sidCookie)
+                .GET()
+                .build());
+
+        assertEquals(200, r2.statusCode());
+        assertTrue(r2.body().contains("count=2"), "Second request should increment within same session");
+
+        HttpResponse<String> r3 = send(HttpRequest.newBuilder(URI.create(BASE_URL + "/session/count"))
+                .header("Cookie", sidCookie)
+                .GET()
+                .build());
+
+        assertEquals(200, r3.statusCode());
+        assertTrue(r3.body().contains("count=3"), "Third request should increment within same session");
+    }
+
+    @Test
+    @DisplayName("New client (no Cookie header) gets a new session")
+    void sessionCookie_newClientGetsNewSession() throws Exception {
+        HttpResponse<String> r1 = send(HttpRequest.newBuilder(URI.create(BASE_URL + "/session/count")).GET().build());
+        assertEquals(200, r1.statusCode());
+        String sid1 = extractCookie(r1.headers(), "SID");
+        assertNotNull(sid1);
+        assertTrue(r1.body().contains("count=1"));
+
+        HttpResponse<String> r2 = send(HttpRequest.newBuilder(URI.create(BASE_URL + "/session/count")).GET().build());
+        assertEquals(200, r2.statusCode());
+        String sid2 = extractCookie(r2.headers(), "SID");
+        assertNotNull(sid2);
+        assertTrue(r2.body().contains("count=1"), "New client should start at 1");
+
+        assertNotEquals(cookieValueOnly(sid1), cookieValueOnly(sid2), "Different clients should get different SID");
+    }
+
+    private static String extractCookie(HttpHeaders headers, String cookieName) {
+        List<String> setCookies = headers.allValues("Set-Cookie");
+        for (String sc : setCookies) {
+            if (sc.startsWith(cookieName + "=")) {
+                return sc.split(";", 2)[0].trim();
+            }
+        }
+        return null;
+    }
+
+    private static String cookieValueOnly(String cookieHeaderValue) {
+        String[] kv = cookieHeaderValue.split("=", 2);
+        return kv.length == 2 ? kv[1] : cookieHeaderValue;
     }
 }
