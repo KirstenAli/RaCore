@@ -1,1 +1,1 @@
-moduleSearchIndex = [{"l":"org.racore"}];updateSearchResults();
+moduleSearchIndex = [];updateSearchResults();
