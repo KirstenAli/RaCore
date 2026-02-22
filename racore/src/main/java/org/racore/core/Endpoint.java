@@ -1,6 +1,7 @@
 package org.racore.core;
 
 import org.apache.commons.fileupload2.core.DiskFileItem;
+import org.racore.config.RaConfig;
 import org.racore.core.requests.CustomRequest;
 import org.racore.core.requests.Request;
 import org.racore.core.responses.SseResponse;
@@ -31,6 +32,12 @@ public class Endpoint {
     private static final List<Interceptor> interceptors = new ArrayList<>();
     private static HttpServer server;
     private static final String STATIC_DIRECTORY = "src/main/resources/static";
+
+    static {
+        if("jdk".equals(RaConfig.getServerBackend())) {
+            initializeServer();
+        }
+    }
 
     public static void initializeServer() {
         server = ServerRegistry.getServer();

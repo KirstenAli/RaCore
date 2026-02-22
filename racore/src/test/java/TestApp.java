@@ -1,5 +1,4 @@
 import com.sun.net.httpserver.HttpExchange;
-import org.racore.core.Endpoint;
 import org.racore.core.requests.Request;
 import org.racore.core.responses.StreamingResponse;
 import org.racore.core.utils.CookieUtil;
@@ -33,7 +32,6 @@ public class TestApp {
             new SessionManager("SID", sessionStore, cookieOptions);
 
     public static void startServer() {
-        Endpoint.initializeServer();
         defineRoutes();
         registerInterceptors();
         serveStatic();
