@@ -1,18 +1,18 @@
 import com.sun.net.httpserver.HttpExchange;
-import org.racore.core.requests.Request;
-import org.racore.core.responses.StreamingResponse;
-import org.racore.core.utils.CookieUtil;
-import org.racore.interceptors.Interceptor;
+import io.github.kirstenali.racore.core.requests.Request;
+import io.github.kirstenali.racore.core.responses.StreamingResponse;
+import io.github.kirstenali.racore.core.utils.CookieUtil;
+import io.github.kirstenali.racore.interceptors.Interceptor;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-import org.racore.core.session.Session;
-import org.racore.core.session.SessionManager;
-import org.racore.core.session.SessionStore;
-import org.racore.interceptors.SessionInterceptor;
+import io.github.kirstenali.racore.core.session.Session;
+import io.github.kirstenali.racore.core.session.SessionManager;
+import io.github.kirstenali.racore.core.session.SessionStore;
+import io.github.kirstenali.racore.interceptors.SessionInterceptor;
 
-import static org.racore.core.Endpoint.*;
+import static io.github.kirstenali.racore.core.Endpoint.*;
 
 public class TestApp {
 

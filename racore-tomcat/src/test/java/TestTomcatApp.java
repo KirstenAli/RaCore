@@ -1,11 +1,11 @@
 import org.apache.catalina.Context;
 import org.apache.catalina.startup.Tomcat;
-import org.racore.servers.servlet.RaCoreServlet;
+import io.github.kirstenali.racore.servers.servlet.RaCoreServlet;
 
 import java.io.File;
 import java.net.ServerSocket;
 
-import static org.racore.core.Endpoint.get;
+import static io.github.kirstenali.racore.core.Endpoint.get;
 
 public final class TestTomcatApp {
 
