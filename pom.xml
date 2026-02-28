@@ -3,9 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.racore</groupId>
+    <groupId>io.github.kirstenali</groupId>
     <artifactId>racore-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>0.1.0-alpha</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -18,6 +18,13 @@
         <jakarta.servlet.version>6.0.0</jakarta.servlet.version>
         <tomcat.version>10.1.24</tomcat.version>
     </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/KirstenAli/RaCore</url>
+        </repository>
+    </distributionManagement>
 
     <dependencyManagement>
         <dependencies>
