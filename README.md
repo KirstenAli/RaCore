@@ -18,7 +18,7 @@ To get started, add the following dependency to your `pom.xml`:
 
 <dependencies>
     <dependency>
-        <groupId>org.racore</groupId>
+        <groupId>io.github.kirstenali</groupId>
         <artifactId>ra-core</artifactId>
         <version>0.1.0-alpha</version>
     </dependency>
