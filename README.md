@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./ra_framework_logo.svg" alt="Ra logo" width="160" />
+</p>
+
 # Ra
 
 Ra is a lightweight Java web framework focused on **simplicity, minimal boilerplate, and rapid development**.
