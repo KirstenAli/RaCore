@@ -9,25 +9,18 @@
   <!-- Background -->
   <rect x="16" y="16" width="480" height="480" rx="90" fill="#111"/>
 
-  <!-- Sun circle (Ra theme) -->
-  <circle cx="256" cy="190" r="70" fill="url(#grad)" />
+  <!-- Centered sun -->
+  <circle cx="256" cy="256" r="78" fill="url(#grad)" />
 
   <!-- Rays -->
-  <g stroke="url(#grad)" stroke-width="10" stroke-linecap="round">
-    <line x1="256" y1="70" x2="256" y2="110"/>
-    <line x1="256" y1="270" x2="256" y2="310"/>
-    <line x1="136" y1="190" x2="176" y2="190"/>
-    <line x1="336" y1="190" x2="376" y2="190"/>
-    <line x1="170" y1="104" x2="200" y2="134"/>
-    <line x1="312" y1="246" x2="342" y2="276"/>
-    <line x1="170" y1="276" x2="200" y2="246"/>
-    <line x1="312" y1="134" x2="342" y2="104"/>
+  <g stroke="url(#grad)" stroke-width="12" stroke-linecap="round">
+    <line x1="256" y1="110" x2="256" y2="156"/>
+    <line x1="256" y1="356" x2="256" y2="402"/>
+    <line x1="110" y1="256" x2="156" y2="256"/>
+    <line x1="356" y1="256" x2="402" y2="256"/>
+    <line x1="152.8" y1="152.8" x2="185.3" y2="185.3"/>
+    <line x1="326.7" y1="326.7" x2="359.2" y2="359.2"/>
+    <line x1="152.8" y1="359.2" x2="185.3" y2="326.7"/>
+    <line x1="326.7" y1="185.3" x2="359.2" y2="152.8"/>
   </g>
-
-  <!-- RA text -->
-  <text x="256" y="390" text-anchor="middle"
-        font-family="Segoe UI, Arial, sans-serif"
-        font-size="120"
-        font-weight="700"
-        fill="white">Ra</text>
 </svg>
