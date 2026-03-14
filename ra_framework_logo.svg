@@ -1,26 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
   <defs>
     <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#ff8a00;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#e52e71;stop-opacity:1" />
+      <stop offset="0%" stop-color="#ff8a00"/>
+      <stop offset="100%" stop-color="#e52e71"/>
     </linearGradient>
   </defs>
 
-  <!-- Background -->
   <rect x="16" y="16" width="480" height="480" rx="90" fill="#111"/>
 
-  <!-- Centered sun -->
-  <circle cx="256" cy="256" r="78" fill="url(#grad)" />
+  <circle cx="256" cy="256" r="78" fill="url(#grad)"/>
 
-  <!-- Rays -->
   <g stroke="url(#grad)" stroke-width="12" stroke-linecap="round">
-    <line x1="256" y1="110" x2="256" y2="156"/>
-    <line x1="256" y1="356" x2="256" y2="402"/>
-    <line x1="110" y1="256" x2="156" y2="256"/>
-    <line x1="356" y1="256" x2="402" y2="256"/>
-    <line x1="152.8" y1="152.8" x2="185.3" y2="185.3"/>
-    <line x1="326.7" y1="326.7" x2="359.2" y2="359.2"/>
-    <line x1="152.8" y1="359.2" x2="185.3" y2="326.7"/>
-    <line x1="326.7" y1="185.3" x2="359.2" y2="152.8"/>
+    <line x1="362.0" y1="256.0" x2="416.0" y2="256.0"/>
+    <line x1="331.0" y1="331.0" x2="369.1" y2="369.1"/>
+    <line x1="256.0" y1="362.0" x2="256.0" y2="416.0"/>
+    <line x1="181.0" y1="331.0" x2="142.9" y2="369.1"/>
+    <line x1="150.0" y1="256.0" x2="96.0" y2="256.0"/>
+    <line x1="181.0" y1="181.0" x2="142.9" y2="142.9"/>
+    <line x1="256.0" y1="150.0" x2="256.0" y2="96.0"/>
+    <line x1="331.0" y1="181.0" x2="369.1" y2="142.9"/>
   </g>
 </svg>
