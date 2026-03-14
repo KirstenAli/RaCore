@@ -1,8 +1,9 @@
-# Ra Framework Documentation
+# Ra
 
-Explore the **complete Javadoc** for the Ra framework [here](https://kirstenali.github.io/RaCore/).
+Ra is a lightweight Java web framework focused on **simplicity, minimal boilerplate, and rapid development**.
 
----
+📚 **Documentation:**  
+https://kirstenali.github.io/RaCore/
 
 ## 🚀 Installation
 
@@ -25,13 +26,12 @@ To get started, add the following dependency to your `pom.xml`:
 </dependencies>
 ```
 
----
-
 ## 📚 Examples
 
-This guide shows you how to use the Ra framework to build REST APIs. It covers handling HTTP methods, uploading files, and serving static content. Let's dive in with examples based on a **Person** object.
+This guide shows you how to use the Ra framework to build REST APIs.  
+It covers handling HTTP methods, uploading files, and serving static content.
 
----
+Examples are based on a simple **Person** object.
 
 ### 🛠 Defining an Endpoint
 
@@ -39,13 +39,12 @@ Create an endpoint effortlessly with the following syntax:
 
 ```java
 verb("/endpoint", request -> {
-        // Process the request (parse the request body into an object, access query parameters, path variables, files, or form data, etc.)
-        // Return an object or a file path to be resolved
-        return new MyObject();
+    // Process the request
+    // Access body, query params, path variables, files, or form data
+    // Return an object or a file path
+    return new MyObject();
 });
 ```
-
----
 
 ### Quick Start: One-Line JSON Response
 
@@ -54,111 +53,191 @@ Start up a web server, register an endpoint, and return a JSON response in one l
 ```java
 get("/getPerson/{id}", _ -> new Person("Alice", 30));
 ```
-- **Purpose**: Return a JSON response for a `Person` object.
-- **Output**: `{ "name": "Alice", "age": 30 }`
 
----
+**Purpose**
+
+Return a JSON response for a `Person` object.
+
+**Output**
+
+```json
+{ "name": "Alice", "age": 30 }
+```
 
 ### Retrieve Path Variables
 
 ```java
 get("/getPathVariables/{id}/{name}", Request::getPathVariables);
 ```
-- **Purpose**: Extract path variables from the URL.
-- **Example**:
-    - Request: `/getPathVariables/12/Jay`
-    - Response: `{ "param0": "12", "param1": "Jay" }`
 
----
+**Purpose**
+
+Extract path variables from the URL.
+
+**Example**
+
+Request:
+
+```
+/getPathVariables/12/Jay
+```
+
+Response:
+
+```json
+{ "param0": "12", "param1": "Jay" }
+```
 
 ### Retrieve Query Parameters
 
 ```java
 get("/getQueryParameters", Request::getQueryParams);
 ```
-- **Purpose**: Extract query parameters from the URL.
-- **Example**:
-    - Request: `/getQueryParameters?name=John&age=25`
-    - Response: `{ "name": "John", "age": "25" }`
 
----
+**Purpose**
+
+Extract query parameters from the URL.
+
+**Example**
+
+Request:
+
+```
+/getQueryParameters?name=John&age=25
+```
+
+Response:
+
+```json
+{ "name": "John", "age": "25" }
+```
 
 ### Add a New Person
 
 ```java
 post("/addPerson", request -> {
-Person person = request.getBodyAs(Person.class);
+    Person person = request.getBodyAs(Person.class);
     return "Received Person: " + person;
 });
 ```
-- **Purpose**: Accept JSON payloads to create a new person.
-- **Example**:
-    - Request Body: `{ "name": "Alice", "age": 30 }`
-    - Response: `Received Person: Person{name='Alice', age=30}`
 
----
+**Purpose**
+
+Accept JSON payloads to create a new person.
+
+**Example**
+
+Request Body:
+
+```json
+{ "name": "Alice", "age": 30 }
+```
+
+Response:
+
+```
+Received Person: Person{name='Alice', age=30}
+```
 
 ### Update a Person
 
 ```java
 put("/updatePerson", request -> {
-Person person = request.getBodyAs(Person.class);
+    Person person = request.getBodyAs(Person.class);
     return "Updated Person: " + person;
 });
 ```
-- **Purpose**: Update an entire `Person` object.
-- **Example**:
-    - Request Body: `{ "name": "Alice", "age": 35 }`
-    - Response: `Updated Person: Person{name='Alice', age=35}`
 
----
+**Purpose**
+
+Update an entire `Person` object.
+
+**Example**
+
+Request Body:
+
+```json
+{ "name": "Alice", "age": 35 }
+```
+
+Response:
+
+```
+Updated Person: Person{name='Alice', age=35}
+```
 
 ### Delete a Person
 
 ```java
 delete("/deletePerson", _ -> "Person deleted");
 ```
-- **Purpose**: Delete a person.
-- **Output**: `Person deleted`
 
----
+**Purpose**
+
+Delete a person.
+
+Response:
+
+```
+Person deleted
+```
 
 ### 📁 Upload Files
 
 ```java
-post("/uploadFile", request -> "Files Received: " + request.getUploadedFiles().size());
+post("/uploadFile", request ->
+    "Files Received: " + request.getUploadedFiles().size());
 ```
-- **Purpose**: Handle file uploads.
-- **Example**:
-    - Request: Upload multiple files.
-    - Response: `Files Received: 3`
 
----
+**Purpose**
+
+Handle file uploads.
+
+Example Response:
+
+```
+Files Received: 3
+```
 
 ### 📝 Submit Form Data
 
 ```java
-post("/sendForm", request -> "Form data received: " + request.getFormFields());
+post("/sendForm", request ->
+    "Form data received: " + request.getFormFields());
 ```
-- **Purpose**: Process form data submitted via `POST`.
-- **Example**:
-    - Request Body: Form data with fields `name=John` and `age=25`.
-    - Response: `Form data received: {name=John, age=25}`
 
----
+**Purpose**
+
+Process form data submitted via `POST`.
+
+Example Response:
+
+```
+Form data received: {name=John, age=25}
+```
 
 ### 📂 Serve Static Files
 
 ```java
-serveStatic(); // Enable serving resources from the static folder in resources
+serveStatic(); // Enable serving resources from the static folder
+
 get("/getFile/info.zip", _ -> resolvePath("/info.zip"));
 ```
-- **Purpose**: Serve static files like images, documents, or archives.
-- **Example**:
-    - Request: `/getFile/info.zip`
-    - File Response: `info.zip` from `resources/static`.
 
----
+**Purpose**
+
+Serve static files like images, documents, or archives.
+
+Example:
+
+Request:
+
+```
+/getFile/info.zip
+```
+
+File Response:
+
+`info.zip` served from `resources/static`.
 
 Happy coding! ✨
-
