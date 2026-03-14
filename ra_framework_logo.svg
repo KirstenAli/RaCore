@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff8a00;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e52e71;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect x="16" y="16" width="480" height="480" rx="90" fill="#111"/>
+
+  <!-- Sun circle (Ra theme) -->
+  <circle cx="256" cy="190" r="70" fill="url(#grad)" />
+
+  <!-- Rays -->
+  <g stroke="url(#grad)" stroke-width="10" stroke-linecap="round">
+    <line x1="256" y1="70" x2="256" y2="110"/>
+    <line x1="256" y1="270" x2="256" y2="310"/>
+    <line x1="136" y1="190" x2="176" y2="190"/>
+    <line x1="336" y1="190" x2="376" y2="190"/>
+    <line x1="170" y1="104" x2="200" y2="134"/>
+    <line x1="312" y1="246" x2="342" y2="276"/>
+    <line x1="170" y1="276" x2="200" y2="246"/>
+    <line x1="312" y1="134" x2="342" y2="104"/>
+  </g>
+
+  <!-- RA text -->
+  <text x="256" y="390" text-anchor="middle"
+        font-family="Segoe UI, Arial, sans-serif"
+        font-size="120"
+        font-weight="700"
+        fill="white">Ra</text>
+</svg>
