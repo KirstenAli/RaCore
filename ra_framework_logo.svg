@@ -1,23 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ff8a00"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#111111"/>
+      <stop offset="100%" stop-color="#1f1720"/>
+    </linearGradient>
+
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff9a00"/>
       <stop offset="100%" stop-color="#e52e71"/>
     </linearGradient>
   </defs>
 
-  <rect x="16" y="16" width="480" height="480" rx="90" fill="#111"/>
+  <rect width="512" height="512" rx="108" fill="url(#bg)"/>
 
-  <circle cx="256" cy="256" r="78" fill="url(#grad)"/>
+  <!-- sun -->
+  <circle cx="256" cy="256" r="42" fill="url(#accent)"/>
 
-  <g stroke="url(#grad)" stroke-width="12" stroke-linecap="round">
-    <line x1="362.0" y1="256.0" x2="416.0" y2="256.0"/>
-    <line x1="331.0" y1="331.0" x2="369.1" y2="369.1"/>
-    <line x1="256.0" y1="362.0" x2="256.0" y2="416.0"/>
-    <line x1="181.0" y1="331.0" x2="142.9" y2="369.1"/>
-    <line x1="150.0" y1="256.0" x2="96.0" y2="256.0"/>
-    <line x1="181.0" y1="181.0" x2="142.9" y2="142.9"/>
-    <line x1="256.0" y1="150.0" x2="256.0" y2="96.0"/>
-    <line x1="331.0" y1="181.0" x2="369.1" y2="142.9"/>
+  <!-- routing arcs -->
+  <g fill="none" stroke="url(#accent)" stroke-width="14" stroke-linecap="round">
+    <path d="M128 256C128 180 180 128 256 128"/>
+    <path d="M256 128C332 128 384 180 384 256"/>
+    <path d="M384 256C384 332 332 384 256 384"/>
+    <path d="M256 384C180 384 128 332 128 256"/>
   </g>
 </svg>
