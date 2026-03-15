@@ -4,7 +4,7 @@
 
 # Ra
 
-Ra is a lightweight Java web framework focused on **simplicity, minimal boilerplate, and rapid development**.
+A lightweight Java web framework focused on **simplicity, minimal boilerplate, and rapid development**.
 
 📚 **Documentation:**  
 https://kirstenali.github.io/RaCore/
